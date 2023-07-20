@@ -52,7 +52,7 @@
 </script>
 
 <style scoped>
-	/* #ifdef MP-WEIXIN */
+	/* #ifdef MP-WEIXIN | H5 */
 	.shoppingcar_minip{
 		position: fixed;
 		bottom: 150rpx;
