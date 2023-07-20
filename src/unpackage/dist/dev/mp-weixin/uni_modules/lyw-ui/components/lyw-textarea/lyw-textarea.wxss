@@ -1,0 +1,10 @@
+
+.input-wrap {
+
+
+
+		border-radius: 5rpx;
+		border: 2rpx solid #999999;
+		padding: 10rpx;
+		overflow: auto;
+}

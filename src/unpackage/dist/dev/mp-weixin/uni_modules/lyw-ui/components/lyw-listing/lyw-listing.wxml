@@ -1,0 +1,1 @@
+<view class="listing c333 font26 d_flex d_start data-v-0f5da199"><text wx:for="{{a}}" wx:for-item="cate" wx:key="b" class="{{['listing-item', 'data-v-0f5da199', cate.c && 'listing_actived']}}" bindtap="{{cate.d}}">{{cate.a}}</text></view>

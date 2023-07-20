@@ -1,0 +1,1 @@
+<view bindtap="{{b}}" hover-class="none" class="{{['data-v-3246373d', 'btn', c]}}" style="{{'width:' + d + ';' + ('height:' + e) + ';' + ('background:' + f) + ';' + ('padding:' + g) + ';' + ('font-size:' + h) + ';' + ('color:' + i) + ';' + ('border-radius:' + j) + ';' + ('border:' + k)}}">{{a}}</view>

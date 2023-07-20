@@ -1,0 +1,1 @@
+<view class="shoppingcar_minip data-v-b50072d2" bindtap="{{d}}"><image wx:if="{{a}}" class="data-v-b50072d2" style="width:108rpx;height:108rpx" src="{{b}}" mode="aspectFill"></image><image wx:else class="data-v-b50072d2" style="width:108rpx;height:108rpx" src="{{c}}" mode="aspectFill"></image></view>

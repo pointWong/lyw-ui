@@ -1,0 +1,1 @@
+<view class="card-wrap data-v-ba605cf6" style="{{'padding-top:' + a + ';' + b}}" bindtap="{{c}}"><slot></slot></view>

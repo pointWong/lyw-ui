@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "lyw-radio": "../lyw-radio/lyw-radio"
+  }
+}

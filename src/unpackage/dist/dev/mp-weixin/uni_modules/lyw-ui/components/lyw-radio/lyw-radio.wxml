@@ -1,0 +1,1 @@
+<view class="wrap data-v-aeed23cd" catchtap="{{h}}" style="{{i}}"><view wx:if="{{a}}" class="disabled data-v-aeed23cd" style="{{b}}"></view><image wx:elif="{{c}}" class="data-v-aeed23cd" style="{{d}}" src="{{e}}" mode="widthFix"></image><image wx:else class="data-v-aeed23cd" style="{{f}}" src="{{g}}" mode="widthFix"></image></view>

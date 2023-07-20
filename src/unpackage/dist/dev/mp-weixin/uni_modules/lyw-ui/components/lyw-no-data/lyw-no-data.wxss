@@ -1,0 +1,16 @@
+
+.wrap.data-v-45fbba79 {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+}
+.noDate.data-v-45fbba79 {
+		/* width: 100rpx; margin-top: 90rpx; */
+		/* width: 200rpx; margin-top: 90rpx; */
+}
+.text.data-v-45fbba79 {
+		/* font24 c999 mgt50 */
+		font-size: 24rpx;
+		color: #999;
+		margin-top: 50rpx;
+}

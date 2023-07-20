@@ -1,0 +1,1 @@
+<view class="wrap data-v-45fbba79"><image wx:if="{{a}}" class="data-v-45fbba79" style="{{'width:' + b + ';' + ('height:' + c) + ';' + ('margin-top:' + d)}}" lazy-load="{{true}}" mode="widthFix" src="{{e}}" binderror="{{f}}"></image><text class="text data-v-45fbba79">{{g}}</text></view>
