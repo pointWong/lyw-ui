@@ -35,7 +35,7 @@
 	const lywimageswipepopup = ref(null)
 	const showItems = ref(false)
 	const show = async (index) => {
-		current.value = index
+		current.value = index || 0
 		lywimageswipepopup.value.open()
 		showItems.value = false
 		showItems.value = true

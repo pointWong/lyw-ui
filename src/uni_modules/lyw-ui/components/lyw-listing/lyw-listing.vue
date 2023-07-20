@@ -1,11 +1,11 @@
 <template>
 	<view class="listing c333 font26 d_flex d_start">
-		<text class="listing-item" v-for="(cate,i) in params.list" :key="i" :class="{listing_actived:cate.cateCode === current}" @click="selectItem(cate)">{{cate.cateName}}</text>
+		<text class="listing-item" v-for="(cate,i) in params.list" :key="i" :class="{listing_actived:cate.cateCode === selected}" @click="selectItem(cate)">{{cate.cateName}}</text>
 	</view>
 </template>
 
 <script>
-	import { reactive } from 'vue'
+	import { reactive,ref } from 'vue'
 	
 	export default {
 		props: {
@@ -19,21 +19,24 @@
 			}
 		},
 		watch: {
-			
+			current(){
+
+			}
 		},
 		setup(props, { emit }) {
 			const params = reactive({})
 			for(let key in props){
 				params[key] = props[key]
 			}
-			
+			const selected = ref(params.current)
 			const selectItem = (cate) => {
-				// current.value = cate.cateCode
+				selected.value = cate.cateCode
 				emit('onChange',cate)
 			}
 			
 			return {
 				params,
+				selected,
 				selectItem
 			}
 		}
@@ -41,6 +44,18 @@
 </script>
 
 <style lang="scss" scoped>
+.d_flex {
+	display: flex;
+}
+.c333{
+	color: #333;
+}
+.font26{
+	font-size: 26rpx;
+}
+.d_start{
+	justify-content: flex-start;
+}
 	.listing{
 		// padding: 0 32rpx;
 		padding-right: 32rpx;

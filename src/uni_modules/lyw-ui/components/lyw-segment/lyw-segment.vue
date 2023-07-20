@@ -26,12 +26,12 @@
 				default(){
 					return [
 						{
-							name:'跟进中',
-							value:2
+							name:'项目一',
+							value:0
 						},
 						{
-							name:'已签约',
-							value:3
+							name:'项目二',
+							value:1
 						}
 					]
 				}
@@ -52,6 +52,9 @@
 
 <style scoped>
 	.wrap{
+	}
+	.d_flex{
+		display: flex;
 	}
 	.item{
 		display: flex;

@@ -27,7 +27,7 @@
 		modelValue: String,
 		placeholder: {
 			type: String,
-			default: '请输入商品名称'
+			default: '请输入'
 		},
 		placeholderStyle:{
 			type:String,

@@ -1,7 +1,7 @@
 <template>
 	<uni-popup ref="popup" type="bottom" @change="change" :safeArea="false">
 		<view class="wrap">
-			<image class="close" src="/static/common/close.png" mode="widthFix" @click="closePop"></image>
+			<image class="close" src="./close.png" mode="widthFix" @click="closePop"></image>
 			<view class="title">{{title}}</view>
 			<view class="time-gap">
 				<view class="weekday"></view>
@@ -19,7 +19,7 @@
 					<view class="wrap-opts-item" v-for="(op,j) in item.hourRangeList" :key="j"
 						:class="{avail:op.enough,selected:op.isSelect}" @click="selectItem(op,item)">
 						<text v-if="op.enough && !op.isSelect">{{itemLabel}}</text>
-						<image style="height: 30rpx;width: 36rpx;" v-if="op.isSelect" src="/static/common/selected.png"
+						<image style="height: 30rpx;width: 36rpx;" v-if="op.isSelect" src="./selected.png"
 							mode="widthFix"></image>
 					</view>
 				</view>
@@ -129,18 +129,7 @@
 		return []
 	}
 
-	const ctimeOpts = ref([])
-	watch(() => props.timeOpts, (newOpts) => {
-		ctimeOpts.value = filterTimeOpts(newOpts,props.type)
-		setSelectedOpt()
-	})
-
-	watch([() => props.selected, () => props.type], () => {
-		if (ctimeOpts.value.length) {
-			ctimeOpts.value = filterTimeOpts(ctimeOpts.value,props.type)
-			setSelectedOpt()
-		}
-	})
+	
 
 	const popup = ref(null)
 	const open = async (title) => {
@@ -224,6 +213,19 @@
 			selected.value = Object.assign(item, p)
 		}
 	}
+	const ctimeOpts = ref([])
+	watch(() => props.timeOpts, (newOpts) => {
+		console.log("🚀 ~ file: lyw-delivery-time.vue:134 ~ watch ~ newOpts:", newOpts)
+		ctimeOpts.value = filterTimeOpts(newOpts,props.type)
+		setSelectedOpt()
+	},{immediate:true})
+
+	watch([() => props.selected, () => props.type], () => {
+		if (ctimeOpts.value.length) {
+			ctimeOpts.value = filterTimeOpts(ctimeOpts.value,props.type)
+			setSelectedOpt()
+		}
+	})
 	defineExpose({
 		open
 	})

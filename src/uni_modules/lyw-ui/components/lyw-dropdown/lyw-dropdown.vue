@@ -143,7 +143,7 @@
 		width: 100%;
 		display: flex;
 		align-items: center;
-		// justify-content: space-between;
+		justify-content: space-between;
 		border: 1rpx solid #999;
 		background-color: #fff;
 		border-radius: 5rpx;

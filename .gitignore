@@ -11,6 +11,8 @@ node_modules
 .DS_Store
 dist
 *.local
+.hbuilderx
+.vite
 
 # Editor directories and files
 .idea

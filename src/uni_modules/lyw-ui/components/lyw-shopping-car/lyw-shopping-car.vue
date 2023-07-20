@@ -5,7 +5,7 @@
 		<view v-if="params.show"></view>
 	</view>
 	<!-- #endif -->
-	<!-- #ifdef MP-WEIXIN -->
+	<!-- #ifdef MP-WEIXIN | H5 -->
 	<view class="shoppingcar_minip" @click="navTo">
 		<image v-if="!params.show" style="width: 108rpx;height: 108rpx;" src="./shopping_car_d.png" mode="aspectFill"></image>
 		<image v-else style="width: 108rpx;height: 108rpx;" src="./shopping_car.png" mode="aspectFill"></image>
