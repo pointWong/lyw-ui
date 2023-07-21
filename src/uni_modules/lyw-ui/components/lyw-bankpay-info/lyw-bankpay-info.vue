@@ -21,7 +21,7 @@
 				</view>
 			</view>
 			<view class="close d_flex d_column_center d_center" style="margin-top: 76rpx;">
-				<image style="height: 66rpx;width: 66rpx;" src="/static/lyw-bankpay-info/closeo.png" mode="widthFix" @click="close"></image>
+				<image style="height: 66rpx;width: 66rpx;" src="./closeo.png" mode="widthFix" @click="close"></image>
 			</view>
 		</view>
 	</uni-popup>
