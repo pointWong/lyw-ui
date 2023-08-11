@@ -13,6 +13,7 @@ node_modules
 *.local
 .hbuilderx
 .vite
+/src/unpackage
 
 # Editor directories and files
 .idea
