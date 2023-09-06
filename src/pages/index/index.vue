@@ -25,7 +25,12 @@
 			</uni-collapse-item>
 			<uni-collapse-item title="倒计时">
 				<lyw-card>
-					<lyw-countdown></lyw-countdown>
+					<lyw-countdown :value="countdownNum" @click="countdownNum = Math.random()"></lyw-countdown>
+				</lyw-card>
+			</uni-collapse-item>
+			<uni-collapse-item title="日期选择器">
+				<lyw-card>
+					<lyw-datepicker></lyw-datepicker>
 				</lyw-card>
 			</uni-collapse-item>
 			<uni-collapse-item title="配送时间">
@@ -40,9 +45,14 @@
 					<lyw-dialog ref="lyw-dialog"></lyw-dialog>
 				</lyw-card>
 			</uni-collapse-item>
-			<uni-collapse-item title="下拉选择框">
-				<lyw-card>
+			<uni-collapse-item title="Dropdown">
+				<lyw-card :styles="{ height: '300rpx' }">
 					<lyw-dropdown></lyw-dropdown>
+				</lyw-card>
+			</uni-collapse-item>
+			<uni-collapse-item title="Select">
+				<lyw-card>
+					<lyw-select></lyw-select>
 				</lyw-card>
 			</uni-collapse-item>
 			<uni-collapse-item title="筛选">
@@ -63,17 +73,33 @@
 					<lyw-input></lyw-input>
 				</lyw-card>
 			</uni-collapse-item>
-			<uni-collapse-item title="tab">
+			<uni-collapse-item title="文本输入框(带搜索按钮)">
 				<lyw-card>
-					<lyw-listing
-						:list="[{cateCode:0,cateName:'选项'},{cateCode:1,cateName:'选项二'},{cateCode:2,cateName:'选项三'}]"></lyw-listing>
+					<lyw-search-input></lyw-search-input>
 				</lyw-card>
 			</uni-collapse-item>
-			<uni-collapse-item title="蒙层">
+			<uni-collapse-item title="分割线">
 				<lyw-card>
-					<lyw-btn @click="showMask = true" title="显示蒙层"></lyw-btn>
+					<lyw-line></lyw-line>
+				</lyw-card>
+			</uni-collapse-item>
+			<uni-collapse-item title="Tab">
+				<lyw-card>
+					<lyw-tab v-model="tabIndex"
+						:list="[{ value: 0, label: '选项' }, { value: 1, label: '选项二' }, { value: 2, label: '选项三' }]"></lyw-tab>
+				</lyw-card>
+			</uni-collapse-item>
+			<uni-collapse-item title="Mask">
+				<lyw-card>
+					<lyw-btn @click="showMask = true" title="显示"></lyw-btn>
 				</lyw-card>
 				<lyw-mask :show="showMask" @on-close="showMask = false"></lyw-mask>
+			</uni-collapse-item>
+			<uni-collapse-item title="Modal">
+				<lyw-card>
+					<lyw-btn @click="showModal = true" title="显示"></lyw-btn>
+				</lyw-card>
+				<lyw-modal v-model="showModal"></lyw-modal>
 			</uni-collapse-item>
 			<uni-collapse-item title="空状态">
 				<lyw-card>
@@ -92,9 +118,9 @@
 					<lyw-phonecall ref="phonecall"></lyw-phonecall>
 				</lyw-card>
 			</uni-collapse-item>
-			<uni-collapse-item title="输入框(带搜索按钮)">
+			<uni-collapse-item title="Progress">
 				<lyw-card>
-					<lyw-search-input></lyw-search-input>
+					<lyw-progress></lyw-progress>
 				</lyw-card>
 			</uni-collapse-item>
 			<uni-collapse-item title="segment">
@@ -146,98 +172,151 @@
 					<text>看最下方</text>
 				</lyw-card>
 			</uni-collapse-item>
+			<uni-collapse-item title="表格">
+				<lyw-card>
+					<lyw-table :columns="columns" :data="tableData"></lyw-table>
+				</lyw-card>
+			</uni-collapse-item>
 		</uni-collapse>
 		<lyw-to-submit></lyw-to-submit>
 	</view>
 </template>
 <script setup>
-	import {
-		ref
-	} from 'vue';
+import {
+	ref
+} from 'vue';
 
-	import times from './../../data/times'
+import times from './../../data/times'
 
-	const timesList = times
+const timesList = times
 
-	const statusHeight = uni.getSystemInfoSync().statusBarHeight
+const statusHeight = uni.getSystemInfoSync().statusBarHeight
 
-	const showMask = ref(false)
+const tabIndex = ref(0)
 
-	const showEmpty = ref(false)
+const showMask = ref(false)
 
-	const current = ref(0)
+const showEmpty = ref(false)
 
-	const props = defineProps({
-		title: "Hello",
-	})
+const current = ref(0)
 
-	const cascadeList = [{
-			name: '项目一',
-			value: 0,
-			child: [{
-					name: '项目一',
-					value: 1,
-					child: [{
-						name: '项目一',
-						value: 1,
-					}]
-				},
-				{
-					name: '项目一',
-					value: 1,
-					child: [{
-						name: '项目一',
-						value: 1,
-					}]
-				},
-				{
-					name: '项目一',
-					value: 1,
-					child: [{
-						name: '项目一',
-						value: 1,
-					}]
-				}
-			]
-		},
-		{
+const countdownNum = ref(60)
+
+const props = defineProps({
+	title: "Hello",
+})
+
+const cascadeList = [{
+	name: '项目一',
+	value: 0,
+	child: [{
+		name: '项目一',
+		value: 1,
+		child: [{
 			name: '项目一',
 			value: 1,
-			child: [{
-				name: '项目一',
-				value: 0,
-				child: [{
-					name: '项目一',
-					value: 0,
-				}]
-			}]
-		},
-		{
+		}]
+	},
+	{
+		name: '项目一',
+		value: 1,
+		child: [{
 			name: '项目一',
-			value: 3,
-			child: [{
-				name: '项目一',
-				value: 0,
-				child: [{
-					name: '项目一',
-					value: 0,
-				}]
-			}]
-		}
-	]
-
-	const imageList = [
-		"https://lyw-dev.oss-cn-shenzhen.aliyuncs.com/auth/2022/12/12/d55d112aaf11491e81954e983d3b8159.jpg",
-		"https://lyw-dev.oss-cn-shenzhen.aliyuncs.com/auth/2022/12/12/39d48871f52441708bc5cf27ca344be5.JPG",
-		"https://lyw-dev.oss-cn-shenzhen.aliyuncs.com/auth/2022/12/12/917b0c961226425d904839c5dec2d85a.JPG",
-		"https://lyw-dev.oss-cn-shenzhen.aliyuncs.com/auth/2022/12/12/c038342480cb4769a0fe6476b8de5da0.JPG",
-	]
-
-	const toGist = () => {
-		uni.navigateTo({
-			url: '/pages/gist/index'
-		})
+			value: 1,
+		}]
+	},
+	{
+		name: '项目一',
+		value: 1,
+		child: [{
+			name: '项目一',
+			value: 1,
+		}]
 	}
+	]
+},
+{
+	name: '项目一',
+	value: 1,
+	child: [{
+		name: '项目一',
+		value: 0,
+		child: [{
+			name: '项目一',
+			value: 0,
+		}]
+	}]
+},
+{
+	name: '项目一',
+	value: 3,
+	child: [{
+		name: '项目一',
+		value: 0,
+		child: [{
+			name: '项目一',
+			value: 0,
+		}]
+	}]
+}
+]
+
+const imageList = [
+	"https://lyw-dev.oss-cn-shenzhen.aliyuncs.com/auth/2022/12/12/d55d112aaf11491e81954e983d3b8159.jpg",
+	"https://lyw-dev.oss-cn-shenzhen.aliyuncs.com/auth/2022/12/12/39d48871f52441708bc5cf27ca344be5.JPG",
+	"https://lyw-dev.oss-cn-shenzhen.aliyuncs.com/auth/2022/12/12/917b0c961226425d904839c5dec2d85a.JPG",
+	"https://lyw-dev.oss-cn-shenzhen.aliyuncs.com/auth/2022/12/12/c038342480cb4769a0fe6476b8de5da0.JPG",
+]
+
+const columns = [
+	{
+		title:'序号',
+		type:'index',
+		width:'80rpx'
+	},
+	{
+		title:'姓名',
+		key:'name'
+	},
+	{
+		title:'性别',
+		key:'gender'
+	},
+	{
+		title:'年龄',
+		key:'age'
+	}
+]
+
+const tableData = [
+	{
+		name:'小明',
+		gender:'男',
+		age:'19'
+	},
+	{
+		name:'小明',
+		gender:'男',
+		age:'19'
+	},
+	{
+		name:'小明',
+		gender:'男',
+		age:'19'
+	},
+	{
+		name:'小明',
+		gender:'男',
+		age:'19'
+	},
+	{
+		name:'小明',
+		gender:'男',
+		age:'19'
+	}
+]
+
+const showModal = ref(false)
 </script>
 
 <style></style>
