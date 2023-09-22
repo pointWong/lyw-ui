@@ -33,6 +33,7 @@
 	}
 	.star{
 		width: 36rpx;
+		height: 36rpx;
 	}
 	.item + .item{
 		margin-left: 6rpx;

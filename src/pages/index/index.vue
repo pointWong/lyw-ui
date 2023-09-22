@@ -118,9 +118,9 @@
 					<lyw-phonecall ref="phonecall"></lyw-phonecall>
 				</lyw-card>
 			</uni-collapse-item>
-			<uni-collapse-item title="Progress">
+			<uni-collapse-item title="steps">
 				<lyw-card>
-					<lyw-progress></lyw-progress>
+					<lyw-steps></lyw-steps>
 				</lyw-card>
 			</uni-collapse-item>
 			<uni-collapse-item title="segment">
