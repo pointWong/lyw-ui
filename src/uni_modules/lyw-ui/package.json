@@ -5,7 +5,7 @@
   "description": "lyw-ui",
   "keywords": [
     "lyw-ui"
-],
+  ],
   "repository": "",
   "engines": {
     "HBuilderX": "^3.1.0"
@@ -32,10 +32,11 @@
   },
   "uni_modules": {
     "dependencies": [
-		"uni-popup",
-		"uni-nav-bar",
-		"uni-icons"
-	],
+      "uni-popup",
+      "uni-nav-bar",
+      "uni-icons",
+      "uni-load-more"
+    ],
     "encrypt": [],
     "platforms": {
       "cloud": {

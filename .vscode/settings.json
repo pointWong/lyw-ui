@@ -1,0 +1,8 @@
+{
+  "vue-i18n.i18nPaths": "/Users/byt/projects/loyowo/lyw-op/src/locale,src/locale,i18n",
+  "i18n-ally.localesPaths": [
+    "src/locale",
+    "locale",
+    "i18n"
+  ],
+}

@@ -1,146 +1,105 @@
 <template>
-	<div class="wrap">
-		<div class="line"></div>
-		<view class="lpgwrap" :style="styles">
-			<view class="item-wrap" :class="{ last: i == list.length - 1, former: i < current, current: i == current }"
-				v-for="(item, i) in list" :key="i">
-				<view class="item">
-					<view class="circle">
-						<image v-if="i < current" style="height: 16rpx;width: 18rpx;" src="./images/red_sl.png" mode="widthFix">
-						</image>
-						<view v-else class="cicon">{{ i + 1 }}</view>
-					</view>
-					<view class="name">{{ item.name }}</view>
-				</view>
-			</view>
-		</view>
-	</div>
+  <view class="wrap">
+    <view class="item d_flex d_column_start" v-for="(item, index) in options" :key="index">
+      <view>
+        <view :class="[active == index ? 'mgt6' : 'mgt10']">
+          <view v-if="active == index">
+            <image style="width: 15px; height: 15px; display: block" src="./img/logis_check.png" mode="widthFix"></image>
+          </view>
+          <view v-else class="dot_normal"></view>
+        </view>
+        <view class="line" :style="`height:${distance[index]}px`"></view>
+      </view>
+      <view class="content font28" :class="[active == index ? 'ce61673' : 'c999']" :style="{ marginLeft: index == active ? '32rpx' : '40rpx' }">
+        <view class="title">{{ item.title }}</view>
+        <view class="desc font24">{{ item.desc }}</view>
+      </view>
+    </view>
+  </view>
 </template>
-
 <script setup>
-const props = defineProps({
-	styles: {
-		type: Object,
-		default () {
-			return {
-				"height": "170rpx"
-			}
-		}
-	},
-	list: {
-		type: Array,
-		default () {
-			return [
-				{
-					name: '进度1',
-					value: 0
-				},
-				{
-					name: '进度2',
-					value: 1
-				},
-				{
-					name: '进度3',
-					value: 2
-				},
-				{
-					name: '进度4',
-					value: 3
-				}
-			]
-		}
-	},
-	current: {
-		type: Number,
-		default: 1
-	}
-})
-</script>
+import { getCurrentInstance, nextTick, onMounted, ref } from 'vue'
+import { queryElBySelect } from './utils/dom'
 
-<style lang="scss" scoped>
-.wrap {
-	position: relative;
-	.line{
-		position: absolute;
-		width: 100%;
-		border-top: 1px dashed #ccc;
-		top: 19rpx;
-		
-	}
+const props = defineProps({
+  active: {
+    type: Number,
+    default: 0
+  },
+  options: {
+    type: Array,
+    default() {
+      return []
+    }
+  }
+})
+
+const getItemDistance = (list) => {
+  const arr = []
+  for (let i = 0; i < list.length - 1; i++) {
+    let distance = list[i + 1].top - list[i].top
+    if (i == 0) {
+      distance -= uni.upx2px(24)
+    } else {
+      distance -= uni.upx2px(18)
+    }
+    arr.push(distance)
+  }
+  return arr
 }
 
-.lpgwrap {
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	box-sizing: border-box;
-	font-size: 24rpx;
-	color: #999;
+const distance = ref([])
 
-	.item-wrap {
-		position: relative;
-		.item {
-			position: relative;
-			text-align: center;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-
-			.circle {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				height: 36rpx;
-				width: 36rpx;
-				border: 2rpx solid #ccc;
-				box-shadow: 0 0 0 5rpx white;
-				background-color: white;
-				border-radius: 50%;
-				background-color: white;
-			}
-
-			.name {
-				white-space: nowrap;
-			}
-		}
-
-
-   &.former::before,&.last::before{
-		content: '';
-		display: block;
-		height: 36rpx;
-		width: 50%;
-		position: absolute;
-		background-color: white;
-		top: 0;
-	 }
-	 &.last::before{
-		right: 0;
-	 }
-		&.former {
-
-			.item {
-				.circle {
-					border-color: #e61673;
-				}
-			}
-		}
-
-		&.current {
-			.item {
-				.circle {
-					background-color: #e61673;
-					border-color: #e61673;
-					color: white;
-				}
-
-				.name {
-					color: #e61673;
-				}
-			}
-		}
-
-		&.last {}
-	}
+const instance = getCurrentInstance()
+onMounted(async () => {
+  await nextTick()
+  const res = await queryElBySelect('.content', instance)
+  distance.value = getItemDistance(res)
+  console.log("🚀 ~ file: lyw-steps.vue:59 ~ onMounted ~ distance.value:", distance.value)
+})
+</script>
+<style lang="scss" scoped>
+.item {
+  .content {
+    padding-bottom: 30rpx;
+    .title {
+      line-height: 42rpx;
+    }
+    .desc {
+      line-height: 33rpx;
+    }
+  }
+  .dot_normal {
+    width: 11px;
+    height: 11px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-left: 2px;
+  }
+  .line {
+    width: 1px;
+    background-color: #ccc;
+    height: 0;
+    margin-left: 7px;
+    margin-bottom: -10rpx;
+  }
+}
+.mgt6 {
+  margin-top: 6rpx;
+}
+.mgt10 {
+  margin-top: 10rpx;
+}
+.ce61673 {
+  color: #e61673;
+}
+.c999 {
+  color: #999;
+}
+.font28 {
+  font-size: 28rpx;
+}
+.font24 {
+  font-size: 24rpx;
 }
 </style>

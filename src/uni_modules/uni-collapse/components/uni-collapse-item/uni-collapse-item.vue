@@ -62,7 +62,7 @@
 				type: Boolean,
 				default: false
 			},
-			// #ifdef APP-PLUS
+			// #ifdef APP-PLUS | H5
 			// 是否显示动画,app 端默认不开启动画，卡顿严重
 			showAnimation: {
 				type: Boolean,

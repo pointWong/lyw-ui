@@ -19,11 +19,7 @@
 		}
 	}
 </script>
-<style>
-	::-webkit-scrollbar{
-		display: none;
-	}
-</style>
+
 <style lang="scss" scoped>
 	.card-wrap{
 		padding: 32rpx 27rpx 39rpx;
@@ -31,5 +27,4 @@
 		border-radius: 15rpx;
 		margin-bottom: 20rpx;
 	}
-	
 </style>

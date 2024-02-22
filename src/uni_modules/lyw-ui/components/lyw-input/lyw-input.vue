@@ -1,6 +1,6 @@
 <template>
-	<view :class="['input-wrap',disabled?'disabled':'',readOnly?'readonly':'']" :style="{height:height,...styles}">
-		<input class="input" :style="{fontSize:styles.fontSize,padding:'0'}" :maxlength="maxlength" :disabled="disabled" v-model="value" :type="type" :placeholder="placeHolder" placeholder-style="color:#999"/>
+	<view :class="['input-wrap',disabled?'disabled':'',readOnly?'readonly':'']" :style="{height:height}">
+		<input class="input" :maxlength="maxlength" :disabled="disabled" v-model="value" :type="type" :placeholder="placeHolder" placeholder-style="color:#999"/>
 		<slot>
 			<view v-if="showRightIcon" class="eyes" @click="togglePassword">
 				<uni-icons  :type="icon" size="36rpx"  color="#ccc"></uni-icons>
@@ -32,7 +32,7 @@
 		},
 		height:{
 			type:String,
-			default:'60rpx'
+			default:'64rpx'
 		},
 		readOnly:Boolean,
 		showRightIcon:{
@@ -64,7 +64,7 @@
 	})
 </script>
 
-<style scoped>
+<style>
 	.input-wrap{
 		box-sizing: border-box;
 		border-radius: 5rpx;
@@ -76,13 +76,12 @@
 		overflow: hidden;
 	}
 	.input-wrap.disabled{
-		background-color: #ededed;
+		background-color: #f5f5f5;
 	}
 	.input-wrap.disabled.readonly{
 		background-color: transparent;
 	}
 	.input{
 		flex-grow: 1;
-		background-color: transparent;
 	}
 </style>

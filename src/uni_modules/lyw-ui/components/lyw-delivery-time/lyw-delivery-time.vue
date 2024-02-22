@@ -54,7 +54,7 @@
 			}, 0)
 		})
 		// #endif
-		// #ifdef APP-PLUS
+		// #ifdef APP-PLUS | H5
 		await nextTick()
 		// #endif
 	}

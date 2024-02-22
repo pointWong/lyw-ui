@@ -1,5 +1,5 @@
 <template>
-	<!-- #ifdef APP-PLUS -->
+	<!-- #ifdef APP-PLUS | H5 -->
 	<view class="shoppingCar" @click="navTo">
 		<image src="./shoppingCar.png" mode="widthFix"></image>
 		<view v-if="params.show"></view>
@@ -60,7 +60,7 @@
 		z-index: 999;
 	}
 	/* #endif */
-	/* #ifdef APP-PLUS */
+	/* #ifdef APP-PLUS | H5 */
 	.shoppingCar{
 		position: absolute; 
 		right: 44rpx;

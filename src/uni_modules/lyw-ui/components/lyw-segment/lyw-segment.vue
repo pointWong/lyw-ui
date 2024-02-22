@@ -24,16 +24,7 @@
 			list:{
 				type:Array,
 				default(){
-					return [
-						{
-							name:'项目一',
-							value:0
-						},
-						{
-							name:'项目二',
-							value:1
-						}
-					]
+					return []
 				}
 			}
 		},
@@ -53,9 +44,6 @@
 <style scoped>
 	.wrap{
 	}
-	.d_flex{
-		display: flex;
-	}
 	.item{
 		display: flex;
 		align-items: center;
@@ -64,6 +52,8 @@
 		background-color: #fff;
 		border-top: 1rpx solid #999;
 		border-bottom: 1rpx solid #999;
+		padding: 0 20rpx;
+		white-space: nowrap;
 	}
 	.item + .item{
 		border-left: 1rpx solid #999;
@@ -82,5 +72,8 @@
 		background-color: #E61673;
 		color: #fff;
 		border:1rpx solid #E61673;
+	}
+	.d_flex{
+		display: flex;
 	}
 </style>

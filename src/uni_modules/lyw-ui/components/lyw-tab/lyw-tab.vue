@@ -1,5 +1,5 @@
 <template>
-  <view class="wrap" :style="styles">
+  <view class="wrap">
     <view class="item" :class="{ 'current': modelValue == i, 'showline': showline }" :style="`color:${color}`" v-for="(item, i) in list" :key="i"
       @click="clickItem(item, i)">
       {{
@@ -25,12 +25,6 @@ defineProps({
   showline: {
     type: Boolean,
     default: true
-  },
-  styles:{
-    type:Object,
-    default(){
-      return {}
-    }
   }
 })
 
@@ -49,6 +43,7 @@ const clickItem = (item, i) => {
   justify-content: space-around;
   font-family: PingFangSC-Regular, PingFang SC;
   padding: 30rpx 0 18rpx;
+  border-bottom: 1rpx solid #ccc;
 
   .item {
     font-size: 30rpx;

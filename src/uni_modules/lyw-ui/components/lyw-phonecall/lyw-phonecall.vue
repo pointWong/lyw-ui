@@ -1,9 +1,9 @@
 <template>
 	<uni-popup ref="popup" type="bottom" :safeArea="false">
-		<view class="lpwrap">
+		<view class="wrap">
 			<view class="item">{{phone}}</view>
-			<view class="item call" @click="makeCall">呼叫</view>
-			<view class="item cancel mgt10" :style="{paddingBottom:padb+'px'}" @click="close">取消</view>
+			<view class="item call" @click="makeCall">{{$t('common.call')}}</view>
+			<view class="item cancel mgt10" :style="{paddingBottom:padb+'px'}" @click="close">{{$t('common.cancel')}}</view>
 		</view>
 	</uni-popup>
 </template>
@@ -44,10 +44,7 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-	.lpwrap{
-		/* #ifdef MP-ALIPAY */
-		height: 320rpx;
-		/* #endif */
+	.wrap{
 		border-top-left-radius: 10rpx;
 		border-top-right-radius: 10rpx;
 		overflow: hidden;

@@ -1,7 +1,7 @@
 <template>
 	<view class="wrap" @click.stop="selectItem" :style="`margin-right:${mgr}rpx`">
-		<div class="disabled" v-if="disabled" :style="`width:${size}rpx;height:${size}rpx;`"></div>
-		<image v-else-if="!isSelected" :style="`height:${size}rpx;width:${size}rpx;display:block`" src="./image/detault.png" mode="widthFix"></image>
+		<view class="round disabled" v-if="disabled" :style="`width:${size}rpx;height:${size}rpx;`"></view>
+		<view class="round" v-else-if="!isSelected" :style="`width:${size}rpx;height:${size}rpx;border-color:${color}`"></view>
 		<image v-else :style="`height:${size}rpx;width:${size}rpx;display:block`" src="./image/active.png" mode="widthFix"></image>
 	</view>
 </template>
@@ -11,7 +11,7 @@
 	const props = defineProps({
 		select: Boolean,
 		size:{
-			type:Number,
+			type:[Number,String],
 			default:32
 		},
 		mgr:{
@@ -21,6 +21,14 @@
 		disabled:{
 			type:Boolean,
 			default:false
+		},
+		couldChange:{
+			type:Boolean,
+			default:true
+		},
+		color:{
+			type:String,
+			default:''
 		}
 	})
 	const isSelected = ref(false)
@@ -29,18 +37,21 @@
 	},{immediate:true})
 	const emit = defineEmits(['click'])
 	const selectItem = () => {
-		if(props.disabled)return
+		if(props.disabled || !props.couldChange)return
 		isSelected.value = !isSelected.value
 		emit('click',isSelected.value)
 	}
 </script>
 
 <style scoped lang="scss">
-	.disabled{
+	.round{
 		box-sizing: border-box;
-		background-color: #e8e8e8;
-		border: 1rpx solid #ccc;
+		background-color: #fff;
+		border: 2rpx solid #ccc;
 		border-radius: 50%;
+		&.disabled{
+			background-color: #e8e8e8;
+		}
 	}
 	
 </style>

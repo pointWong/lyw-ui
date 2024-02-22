@@ -210,7 +210,7 @@
 	}
 
 	.uni-nav-bar-text {
-		/* #ifdef APP-PLUS */
+		/* #ifdef APP-PLUS | H5 */
 		font-size: 34rpx;
 		/* #endif */
 		/* #ifndef APP-PLUS */

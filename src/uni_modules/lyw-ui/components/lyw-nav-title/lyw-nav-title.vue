@@ -1,6 +1,6 @@
 <template>
 	<view class="nav-title">
-		<slot>标题</slot>
+		<slot>{{$t('common.title')}}</slot>
 	</view>
 </template>
 

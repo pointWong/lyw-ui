@@ -1,6 +1,6 @@
 <template>
 	<view class="wrap" :style="styles" @click="clickItem">
-		<view class="" :style="`color:${sortType?'#e61673':''}`">{{text||'排序'}}</view>
+		<view v-if="!hideText" class="" :style="`color:${sortType?'#e61673':''}`">{{text||'排序'}}</view>
 		<view class="iicons">
 			<view class="item">
 				<uni-icons type="top" :color="iconUpColor" size="24rpx"></uni-icons>
@@ -15,6 +15,9 @@
 <script setup>
 import { computed, ref } from "vue";
 	defineProps({
+		hideText:{
+			type:Boolean
+		},
 		text:String,
 		styles:{
 			type:Object,
