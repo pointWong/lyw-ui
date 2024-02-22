@@ -29,12 +29,7 @@
 </template>
 
 <script setup>
-import {
-		computed,
-		ref,
-		watch,
-		nextTick
-	} from "vue"
+import { computed, ref, watch, nextTick } from 'vue'
 
 const props = defineProps({
   split: {
@@ -212,15 +207,17 @@ const onLocate = () => {
 </script>
 <style lang="scss">
 .lyw-dropdown {
+  box-sizing: border-box;
   width: 100%;
   position: relative;
+  border-radius: 5rpx;
+  border: 1px solid #999;
+  overflow: hidden;
   &-selected {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: #fff;
-    border-radius: 5rpx;
-    border: 1rpx solid #999;
     padding: 0 10rpx;
     height: 42rpx;
     color: #333;

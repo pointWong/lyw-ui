@@ -1,18 +1,19 @@
 <template>
-  <!-- #ifdef MP-WEIXIN | APP-PLUS -->
-  <view class="nav-fixed">
+  <!-- #ifdef MP-WEIXIN | APP-PLUS | H5 -->
+  <view class="nav-fixed" :class="{'border':border}">
     <uni-nav-bar
       :backgroundColor="bgColor"
       :color="color"
       :leftIcon="leftIcon"
       statusBar="true"
-      :border="border"
+      :border="false"
       @clickLeft="clickLeft"
     >
       <lyw-nav-title :style="{ width: '100%' }"
         ><text :style="`color:${color}`">{{ title }}</text></lyw-nav-title
       >
     </uni-nav-bar>
+    <slot></slot>
   </view>
   <!-- #endif -->
   <!-- #ifdef MP-ALIPAY -->
@@ -79,5 +80,8 @@ export default {
   left: 0;
   background-color: #fff;
   z-index: 3;
+}
+.nav-fixed.border{
+  border-bottom: 1rpx solid #ededed;
 }
 </style>

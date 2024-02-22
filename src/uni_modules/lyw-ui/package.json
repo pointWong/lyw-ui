@@ -1,11 +1,11 @@
 {
   "id": "lyw-ui",
   "displayName": "lyw-ui",
-  "version": "1.0.2",
+  "version": "1.0.6",
   "description": "lyw-ui",
   "keywords": [
     "lyw-ui"
-  ],
+],
   "repository": "",
   "engines": {
     "HBuilderX": "^3.1.0"
@@ -45,7 +45,7 @@
       },
       "client": {
         "Vue": {
-          "vue2": "y",
+          "vue2": "n",
           "vue3": "y"
         },
         "App": {

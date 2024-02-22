@@ -1,31 +1,18 @@
 <template>
-  <view class="wrap" :style="{...styles}">
-    <view
-      :class="{ item: true, current: current == item.index }"
-      v-for="(item, index) in listData"
-      :key="index"
-      @click="redirectTo(`/${item.pagePath}`)"
-    >
+  <view class="wrap" :style="{ ...styles }">
+    <view :class="{ item: true, current: current == item.index }" v-for="(item, index) in listData" :key="index" @click="redirectTo(`/${item.pagePath}`)">
       <view class="d_flex_column d_column_center">
-        <image
-          v-if="current == item.index"
-          style="height: 66rpx; width: 66rpx"
-          :src="item.selectedIconPath"
-        ></image>
-        <image
-          v-else
-          style="height: 66rpx; width: 66rpx"
-          :src="item.iconPath"
-        ></image>
+        <image v-if="current == item.index" style="height: 66rpx; width: 66rpx" :src="item.selectedIconPath"></image>
+        <image v-else style="height: 66rpx; width: 66rpx" :src="item.iconPath"></image>
         <view>{{ item.text }}</view>
       </view>
     </view>
   </view>
 </template>
 <script>
-import { initVueI18n } from "@dcloudio/uni-i18n";
-import messages from "./i18n/index.js";
-const { t } = initVueI18n(messages);
+import { initVueI18n } from '@dcloudio/uni-i18n'
+import messages from './i18n/index.js'
+const { t } = initVueI18n(messages)
 import home from './images/home.png'
 import homeAt from './images/home_at.png'
 import mycustomer from './images/myclients.png'
@@ -42,83 +29,82 @@ const img = {
   resources,
   resourcesAt,
   mine,
-  mineAt,
-};
-console.log('img',img)
+  mineAt
+}
 </script>
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue'
 
 const props = defineProps({
+  preKey: {
+    type: String,
+    default: ''
+  },
   current: {
     typpe: Number,
-    default: undefined,
+    default: undefined
   },
   styles: {
     type: Object,
     default() {
-      return {};
-    },
+      return {}
+    }
   },
   list: {
     type: Array,
     default() {
       return [
         {
-          pagePath: "pages/home/index",
+          pagePath: 'pages/home/index',
           iconPath: img.home,
           selectedIconPath: img.homeAt,
           // "text": "首页"
           index: 1,
           operatorType: [2],
-          text: t("app.home"),
+          text: t('app.home')
         },
         {
-          pagePath: "pages/mycustomer/index",
+          pagePath: 'pages/mycustomer/index',
           iconPath: img.mycustomer,
           selectedIconPath: img.mycustomerAt,
           index: 2,
           operatorType: [1, 2],
           // "text": "我的客户"
-          text: t("app.wdkh"),
+          text: t('app.wdkh')
         },
         {
-          pagePath: "pages/resources/index",
+          pagePath: 'pages/resources/index',
           iconPath: img.resources,
           selectedIconPath: img.resourcesAt,
           index: 3,
           operatorType: [1],
           // "text": "客户资源池",
-          text: t("app.khzyc"),
+          text: t('app.khzyc')
         },
         {
-          pagePath: "pages/mine/index",
+          pagePath: 'pages/mine/index',
           iconPath: img.mine,
           selectedIconPath: img.mineAt,
           operatorType: [1, 2],
           index: 4,
           // "text": "我的"
-          text: t("app.wd"),
-        },
-      ];
-    },
-  },
-});
-const listData = ref([]);
-const userInfo = uni.getStorage({
-  key:'userInfo'
-});
-let { operatorType } = userInfo || {};
-operatorType = operatorType || 2;
-listData.value = props.list.filter((item) =>
-  item.operatorType.includes(operatorType)
-);
+          text: t('app.wd')
+        }
+      ]
+    }
+  }
+})
+const listData = ref([])
+const userInfo = uni.getStorageSync(props.preKey + 'userInfo')
+let { operatorType } = userInfo || {}
+operatorType = operatorType || 2
+listData.value = props.list.filter((item) => item.operatorType.includes(operatorType))
 
 const redirectTo = (url) => {
   uni.redirectTo({
-    url,
-  });
-};
+    url
+  })
+}
 </script>
 <style lang="scss">
 .wrap {
