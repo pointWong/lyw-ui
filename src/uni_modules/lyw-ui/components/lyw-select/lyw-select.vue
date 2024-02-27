@@ -1,10 +1,10 @@
 <template>
-  <view :class="['lyw-select', disabled ? 'disabled' : '']" :style="{ ...styles, width: cwidth }">
-    <view class="lyw-select-selected" :style="{ height: styles.height, lineHeight: styles.height }" @click.stop="openPopup">
+  <view :class="['lyw-select', disabled ? 'disabled' : '']" :style="{ width: cwidth }">
+    <view class="lyw-select-selected" :style="{ ...styles }" @click.stop="openPopup">
       <template>
         <text class="selected current" v-if="selected">{{ selected.name }}</text>
         <text class="selected" style="color: #999" v-else>{{ placeHolder || '请选择' }}</text>
-        <view v-if="selected" :style="`height:${styles.height};width:${styles.height};display:flex;align-item:center;justify-content:flex-end`" @click.stop="inputChange({ detail: { value: '' } })">
+        <view v-if="selected" :style="`width:${styles.height};display:flex;align-item:center;justify-content:flex-end`" @click.stop="inputChange({ detail: { value: '' } })">
           <uni-icons type="closeempty" size="24rpx"></uni-icons>
         </view>
         <uni-icons v-else type="bottom" size="24rpx"></uni-icons>
@@ -77,7 +77,7 @@ const props = defineProps({
 
 const pickViewValue = ref(undefined)
 
-const emit = defineEmits(['update:modelValue', 'onChange'])
+const emit = defineEmits(['update:modelValue', 'onChange', 'on-error'])
 const selected = ref(null)
 const listData = ref([])
 watch(
