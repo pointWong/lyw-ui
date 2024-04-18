@@ -1,1 +1,0 @@
-<view class="wrap d_flex data-v-0d151988" style="{{b}}"><view wx:for="{{a}}" wx:for-item="item" wx:key="e" class="{{['data-v-0d151988', 'item', item.b, item.c, item.d]}}" catchtap="{{item.f}}">{{item.a}}</view></view>

@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "lyw-nav-title": "../lyw-nav-title/lyw-nav-title",
-    "uni-nav-bar": "../../../uni-nav-bar/components/uni-nav-bar/uni-nav-bar"
-  }
-}

@@ -1,1 +1,0 @@
-<view class="checkbox data-v-3b846640" bindtap="{{e}}"><image wx:if="{{a}}" class="data-v-3b846640" style="{{b}}" src="{{c}}" mode="widthFix"></image><view wx:else class="default data-v-3b846640" style="{{d}}"></view></view>

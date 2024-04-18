@@ -8,12 +8,13 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+
 .DS_Store
 # dist
 *.local
 .hbuilderx
 .vite
-/unpackage
+unpackage/*
 
 # Editor directories and files
 .idea

@@ -1,1 +1,0 @@
-<view class="stars data-v-37017c98"><view wx:for="{{a}}" wx:for-item="item" wx:key="d" class="item data-v-37017c98"><image wx:if="{{item.a}}" class="star data-v-37017c98" src="{{item.b}}" mode="widthFix"></image><image wx:else class="star data-v-37017c98" src="{{item.c}}" mode="widthFix"></image></view></view>

@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "lyw-btn": "../lyw-btn/lyw-btn",
-    "uni-popup": "../../../uni-popup/components/uni-popup/uni-popup"
-  }
-}
