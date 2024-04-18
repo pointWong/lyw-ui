@@ -2,9 +2,9 @@
   <view :class="['lyw-select', disabled ? 'disabled' : '']" :style="{ width: cwidth }">
     <view class="lyw-select-selected" :style="{ ...styles }" @click.stop="openPopup">
       <template>
-        <text class="selected current" v-if="selected">{{ selected.name }}</text>
-        <text class="selected" style="color: #999" v-else>{{ placeHolder || '请选择' }}</text>
-        <view v-if="selected" :style="`width:${styles.height};display:flex;align-item:center;justify-content:flex-end`" @click.stop="inputChange({ detail: { value: '' } })">
+        <text class="selected current oClamp" v-if="selected">{{ selected.name }}</text>
+        <text class="selected oClamp" style="color: #999" v-else>{{ placeHolder || '请选择' }}</text>
+        <view v-if="selected && !disabled && clearable" :style="`width:${styles.height};display:flex;align-item:center;justify-content:flex-end`" @click.stop="inputChange({ detail: { value: '' } })">
           <uni-icons type="closeempty" size="24rpx"></uni-icons>
         </view>
         <uni-icons v-else type="bottom" size="24rpx"></uni-icons>
@@ -51,6 +51,10 @@ const props = defineProps({
         fontSize: '26rpx'
       }
     }
+  },
+  clearable: {
+    type: Boolean,
+    default: true
   },
   disabled: Boolean,
   shouldCalcWidth: Boolean,
@@ -180,6 +184,7 @@ onShow(() => {
 .lyw-select {
   width: 100%;
   position: relative;
+  flex-shrink: 1;
   &-selected {
     display: flex;
     align-items: center;
@@ -246,6 +251,9 @@ onShow(() => {
 
 .lyw-select.disabled {
   background-color: #f5f5f5;
+  .lyw-select-selected {
+    background-color: #f5f5f5;
+  }
 }
 
 .selected {

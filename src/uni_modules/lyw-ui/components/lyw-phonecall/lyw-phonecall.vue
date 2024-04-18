@@ -2,14 +2,22 @@
 	<uni-popup ref="popup" type="bottom" :safeArea="false">
 		<view class="wrap">
 			<view class="item">{{phone}}</view>
-			<view class="item call" @click="makeCall">{{$t('common.call')}}</view>
-			<view class="item cancel mgt10" :style="{paddingBottom:padb+'px'}" @click="close">{{$t('common.cancel')}}</view>
+			<view class="item call" @click="makeCall">{{t('common.call')}}</view>
+			<view class="item cancel mgt10" :style="{paddingBottom:padb+'px'}" @click="close">{{t('common.cancel')}}</view>
 		</view>
 	</uni-popup>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import {
+		initVueI18n
+	} from '@dcloudio/uni-i18n'
+	import messages from './i18n/index.js'
+	const {
+		t
+	} = initVueI18n(messages)
+
 const props = defineProps({
 	phone:{
 		type:[Number,String],

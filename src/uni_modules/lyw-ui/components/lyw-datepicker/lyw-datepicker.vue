@@ -187,16 +187,16 @@ const closePop = async (e) => {
   let len = pickViewValues.value.length
   if (!e.show && len < 3) {
     pickViewValues.value = pickViewValues.value.concat(new Array(3 - len).fill(0))
-    // #ifdef APP-PLUS | H5
-    await nextTick()
-    emit('update:modelValue', setSelected.value)
-    // #endif
-    // #ifdef MP-WEIXIN
-    wx.nextTick(() => {
-      emit('update:modelValue', setSelected.value)
-    })
-    // #endif
   }
+  // #ifdef APP-PLUS | H5
+  await nextTick()
+  emit('update:modelValue', setSelected.value)
+  // #endif
+  // #ifdef MP-WEIXIN
+  wx.nextTick(() => {
+    emit('update:modelValue', setSelected.value)
+  })
+  // #endif
   emit('change')
 }
 
