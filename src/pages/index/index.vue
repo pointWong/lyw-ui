@@ -1,29 +1,49 @@
 <template>
-  <div class="md:max-w-screen-sm md:mx-auto">
+  <div class="w-screen h-screen flex items-stretch justify-stretch">
+    <div class="left h-full w-60 overflow-y-auto">
+      <uni-collapse>
+        <uni-collapse-item title="使用说明" :open="true">
+          <div
+            class="py-3 px-5 cursor-pointer flex items-center justify-between"
+            @click="clickItem('decription')"
+          >
+            <span>使用说明</span>
+            <uni-icons type="right" size="14" style="color: #999"></uni-icons>
+          </div>
+        </uni-collapse-item>
+        <uni-collapse-item title="组件" :open="true">
+          <div class="cpn">
+            <div
+              class="cpn-item py-3 px-5 cursor-pointer flex items-center justify-between"
+              v-for="item in cpnList"
+              :key="item.id"
+              @click="clickItem(item.id)"
+            >
+              <span>{{ item.name }}</span>
+              <uni-icons type="right" size="14" style="color: #999"></uni-icons>
+            </div>
+          </div>
+        </uni-collapse-item>
+      </uni-collapse>
+    </div>
+    <div class="p-3 grow flex">
+      <div class="grow pr-2">
+        <component :is="componented"></component>
+      </div>
+      <div v-if="currentComponent != 'decription'" class="p-1 h-full bg-black border rounded-lg">
+        <div class="w-full bg-white h-full border rounded-md">
+          <iframe :src="iframeUrl" frameborder="0"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="md:max-w-screen-sm md:mx-auto">
     <view>
       <uni-collapse>
-        <uni-collapse-item title="银行卡信息">
-          <lyw-card>
-            <lyw-btn
-              @click="$refs['bankpay'].open()"
-              title="显示银行信息"
-            ></lyw-btn>
-            <lyw-bankpay-info ref="bankpay"></lyw-bankpay-info>
-          </lyw-card>
-        </uni-collapse-item>
+        
         <uni-collapse-item title="级联选择">
           <lyw-card>
             <lyw-cascade :list="cascadeList"></lyw-cascade>
-          </lyw-card>
-        </uni-collapse-item>
-        <uni-collapse-item title="选择框">
-          <lyw-card>
-            <view>
-              <lyw-checkbox></lyw-checkbox>
-            </view>
-            <view style="margin-top: 10px">
-              <lyw-radio></lyw-radio>
-            </view>
           </lyw-card>
         </uni-collapse-item>
         <uni-collapse-item title="倒计时">
@@ -95,11 +115,7 @@
             ></lyw-image-swiper>
           </lyw-card>
         </uni-collapse-item>
-        <uni-collapse-item title="文本输入框">
-          <lyw-card>
-            <lyw-input></lyw-input>
-          </lyw-card>
-        </uni-collapse-item>
+       
         <uni-collapse-item title="文本输入框(带搜索按钮)">
           <lyw-card>
             <lyw-search-input></lyw-search-input>
@@ -233,12 +249,14 @@
         </uni-collapse-item>
       </uni-collapse>
     </view>
-  </div>
+  </div> -->
 </template>
 <script setup>
-import { ref } from "vue";
-
+import { computed, ref } from "vue";
+import cpnList from "../../data/component";
 import times from "./../../data/times";
+import components from '@/components/index'
+
 
 const timesList = times;
 
@@ -380,7 +398,14 @@ const tableData = [
   },
 ];
 
-const showModal = ref(false);
+const currentComponent = ref('decription')
+const iframeUrl = ref("");
+const clickItem = (id) => {
+  currentComponent.value = id
+  iframeUrl.value = `/lywui#/pages/${id}/index`;
+};
+const componented = computed(()=>{
+  return components[`./${currentComponent.value}-des.vue`].default || ''
+})
 </script>
-
 <style></style>

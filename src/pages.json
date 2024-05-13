@@ -5,6 +5,18 @@
 			"style": {
 				"navigationBarTitleText": "组件列表"
 			}
+		},
+		{
+			"path": "pages/lyw-input/index",
+			"style": {
+				"navigationBarTitleText": "文本输入框"
+			}
+		},
+		{
+			"path": "pages/lyw-checkbox/index",
+			"style": {
+				"navigationBarTitleText": "选择框"
+			}
 		}
 	],
 	"globalStyle": {
