@@ -9,7 +9,7 @@
       const code = `<template>
   <div>
     <lyw-tabbar
-      :styles="{ position: 'static', width: '100%', height: 'auto' }"
+      :styles="{ width: '100%', height: 'auto' }"
     ></lyw-tabbar>
   </div>
 </template>
