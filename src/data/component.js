@@ -28,7 +28,10 @@ export default [
     name: '日期范围选择器',
     id: 'lyw-date-range'
   },
-
+  {
+    name: '时间选择器',
+    id: 'lyw-delivery-time'
+  },
   {
     name: '对话框',
     id: 'lyw-dialog'
@@ -64,5 +67,9 @@ export default [
   {
     name: 'tabbar',
     id: 'lyw-tabbar'
+  },
+  {
+    name: '小星星',
+    id: 'lyw-stars'
   }
 ]

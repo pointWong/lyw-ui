@@ -7,19 +7,12 @@
     </template>
       <script setup>
       const code = `<template>
-  <div class="p-3">
-    <div>使用示例</div>
-    <lyw-input class="mt-3" v-model="word"></lyw-input>
-    <div class="mt-4">输入了：</div>
-    <div>{{ word }}</div>
+  <div class="p-2">
+    <div class="mt-2 mb-3">使用示例</div>
+    <lyw-btn @click="$refs['lyw-dialog'].show()" title="显示对话框"></lyw-btn>
+    <lyw-dialog ref="lyw-dialog"></lyw-dialog>
   </div>
 </template>
-<script setup>
-import { ref } from "vue";
-
-const word = ref('')
-
-<\/script>
 `;
     </script>
     

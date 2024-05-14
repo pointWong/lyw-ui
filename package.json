@@ -2,6 +2,7 @@
   "name": "uni-preset-vue",
   "version": "0.0.0",
   "scripts": {
+    "set-pages":"node ./setPages.js",
     "tailwind-dev": "tailwindcss -i ./src/tailwind-style.css -o ./src/main.css --watch",
     "tailwind-build": "tailwindcss -i ./src/tailwind-style.css -o ./src/main.css",
     "dev:app": "uni -p app",

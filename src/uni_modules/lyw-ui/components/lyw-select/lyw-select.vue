@@ -1,14 +1,27 @@
 <template>
-  <view :class="['lyw-select', disabled ? 'disabled' : '']" :style="{ width: cwidth }">
-    <view class="lyw-select-selected" :style="{ ...styles }" @click.stop="openPopup">
-      <template>
-        <text class="selected current oClamp" v-if="selected">{{ selected.name }}</text>
-        <text class="selected oClamp" style="color: #999" v-else>{{ placeHolder || '请选择' }}</text>
-        <view v-if="selected && !disabled && clearable" :style="`width:${styles.height};display:flex;align-item:center;justify-content:flex-end`" @click.stop="inputChange({ detail: { value: '' } })">
-          <uni-icons type="closeempty" size="24rpx"></uni-icons>
-        </view>
-        <uni-icons v-else type="bottom" size="24rpx"></uni-icons>
-      </template>
+  <view
+    :class="['lyw-select', disabled ? 'disabled' : '']"
+    :style="{ width: cwidth }"
+  >
+    <view
+      class="lyw-select-selected"
+      :style="{ ...styles }"
+      @click.stop="openPopup"
+    >
+      <text class="selected current oClamp" v-if="selected">{{
+        selected.name
+      }}</text>
+      <text class="selected oClamp" style="color: #999" v-else>{{
+        placeHolder || "请选择"
+      }}</text>
+      <view
+        v-if="selected && !disabled && clearable"
+        :style="`width:${styles.height};display:flex;align-item:center;justify-content:flex-end`"
+        @click.stop="inputChange({ detail: { value: '' } })"
+      >
+        <uni-icons type="closeempty" size="24rpx"></uni-icons>
+      </view>
+      <uni-icons v-else type="bottom" size="24rpx"></uni-icons>
     </view>
     <!-- <view :class="['list', { show: showList && listData.length }]" :style="{ width: cwidth }">
       <view class="list-item" v-for="(item, i) in listData" :key="i" :style="`height:${styles.height};line-height:${styles.height}`" @click.stop="selectItem(item)">{{ item.name }}</view>
@@ -17,15 +30,34 @@
       <view class="picker-view-wrap">
         <view class="filter-input" v-if="search">
           <view class="filter-input-content">
-            <input v-model="inputKey" :placeholder="`请输入关键字`" placeholder-style="color:#999" @input="inputChange" />
-            <view v-if="inputKey" @click.stop="inputChange({ detail: { value: '' } })">
+            <input
+              v-model="inputKey"
+              :placeholder="`请输入关键字`"
+              placeholder-style="color:#999"
+              @input="inputChange"
+            />
+            <view
+              v-if="inputKey"
+              @click.stop="inputChange({ detail: { value: '' } })"
+            >
               <uni-icons type="closeempty" size="30rpx"></uni-icons>
             </view>
           </view>
         </view>
-        <picker-view :immediate-change="true" indicator-style="height: 50px;" :value="pickViewValues" @change="change" class="picker-view">
+        <picker-view
+          :immediate-change="true"
+          indicator-style="height: 50px;"
+          :value="pickViewValues"
+          @change="change"
+          class="picker-view"
+        >
           <picker-view-column>
-            <view class="picker-view-item" v-for="(item, i) in listData" :key="i">{{ item.name }}</view>
+            <view
+              class="picker-view-item"
+              v-for="(item, i) in listData"
+              :key="i"
+              >{{ item.name }}</view
+            >
           </picker-view-column>
         </picker-view>
       </view>
@@ -34,27 +66,27 @@
 </template>
 
 <script setup>
-import { computed, ref, watch } from 'vue'
-import { onShow } from '@dcloudio/uni-app'
-import { lywNextTick } from '../../utils/common'
+import { computed, ref, watch } from "vue";
+import { onShow } from "@dcloudio/uni-app";
+import { lywNextTick } from "../../utils/common";
 const props = defineProps({
   placeHolder: String,
   modelValue: {
-    type: [String, Number]
+    type: [String, Number],
   },
   search: Boolean,
   styles: {
     type: Object,
     default() {
       return {
-        height: '60rpx',
-        fontSize: '26rpx'
-      }
-    }
+        height: "60rpx",
+        fontSize: "26rpx",
+      };
+    },
   },
   clearable: {
     type: Boolean,
-    default: true
+    default: true,
   },
   disabled: Boolean,
   shouldCalcWidth: Boolean,
@@ -63,122 +95,132 @@ const props = defineProps({
     default() {
       return [
         {
-          name: '选项一',
-          value: 1
+          name: "选项一",
+          value: 1,
         },
         {
-          name: '选项二',
-          value: 2
+          name: "选项二",
+          value: 2,
         },
         {
-          name: '选项三',
-          value: 3
-        }
-      ]
-    }
-  }
-})
+          name: "选项三",
+          value: 3,
+        },
+      ];
+    },
+  },
+});
 
-const pickViewValue = ref(undefined)
+const pickViewValue = ref(undefined);
 
-const emit = defineEmits(['update:modelValue', 'onChange', 'on-error'])
-const selected = ref(null)
-const listData = ref([])
+const emit = defineEmits(["update:modelValue", "onChange", "on-error"]);
+const selected = ref(null);
+const listData = ref([]);
 watch(
   [() => props.modelValue, () => props.list],
   async ([newVal, newList], [oldVal, oldList]) => {
     if (newList != oldList) {
-      listData.value = props.list
+      listData.value = props.list;
     }
-    if (props.modelValue === undefined || props.modelValue === null || props.modelValue === '') {
-      listData.value = props.list
-      selected.value = null
-      pickViewValue.value = undefined
-      return
+    if (
+      props.modelValue === undefined ||
+      props.modelValue === null ||
+      props.modelValue === ""
+    ) {
+      listData.value = props.list;
+      selected.value = null;
+      pickViewValue.value = undefined;
+      return;
     }
-    await lywNextTick()
-    selected.value = listData.value.filter((item) => item.value == props.modelValue)[0]
+    await lywNextTick();
+    selected.value = listData.value.filter(
+      (item) => item.value == props.modelValue
+    )[0];
     if (selected.value === undefined || selected.value === null) {
-      selected.value = { value: props.modelValue, name: props.modelValue }
+      selected.value = { value: props.modelValue, name: props.modelValue };
     } else {
-      pickViewValue.value = listData.value.findIndex((item) => item.value == props.modelValue)
+      pickViewValue.value = listData.value.findIndex(
+        (item) => item.value == props.modelValue
+      );
     }
   },
   { immediate: true }
-)
+);
 
-const inputKey = ref('')
+const inputKey = ref("");
 const inputChange = (e) => {
-  inputKey.value = e.detail.value
-  if (selected.value && e.detail.value == selected.value.name) return
+  inputKey.value = e.detail.value;
+  if (selected.value && e.detail.value == selected.value.name) return;
   if (!e.detail.value) {
-    listData.value = props.list
-    emit('update:modelValue', undefined)
-    emit('onChange', undefined)
-    selected.value = null
-    return
+    listData.value = props.list;
+    emit("update:modelValue", undefined);
+    emit("onChange", undefined);
+    selected.value = null;
+    return;
   }
-  listData.value = props.list.filter(({ name }) => name.indexOf(e.detail.value) != -1)
-}
+  listData.value = props.list.filter(
+    ({ name }) => name.indexOf(e.detail.value) != -1
+  );
+};
 
-const popup = ref(null)
+const popup = ref(null);
 const openPopup = () => {
-  if (props.disabled) return
+  if (props.disabled) return;
   if (!props.list.length) {
-    emit('on-error')
-    return
+    emit("on-error");
+    return;
   }
-  inputKey.value = selected.value && selected.value.name
+  inputKey.value = selected.value && selected.value.name;
   if (!props.search) {
-    listData.value = props.list
+    listData.value = props.list;
   }
-  popup.value.open()
-}
+  popup.value.open();
+};
 
 const change = (e) => {
-  pickViewValue.value = e.detail.value[0]
-  const picked = listData.value[pickViewValue.value]
-  selected.value = picked
-  emit('update:modelValue', picked && picked.value)
-  emit('onChange', picked)
-}
+  pickViewValue.value = e.detail.value[0];
+  const picked = listData.value[pickViewValue.value];
+  selected.value = picked;
+  emit("update:modelValue", picked && picked.value);
+  emit("onChange", picked);
+};
 const pickViewValues = computed(() => {
-  if (!pickViewValue.value) return []
-  return [pickViewValue.value]
-})
+  if (!pickViewValue.value) return [];
+  return [pickViewValue.value];
+});
 
 const closePop = (e) => {
   if (!e.show && (!pickViewValue.value || pickViewValue.value < 0)) {
-    const firstItem = listData.value[0]
+    const firstItem = listData.value[0];
     if (firstItem) {
-      pickViewValue.value = 0
-      selected.value = firstItem
-      emit('update:modelValue', firstItem && firstItem.value)
-      emit('onChange', firstItem)
+      pickViewValue.value = 0;
+      selected.value = firstItem;
+      emit("update:modelValue", firstItem && firstItem.value);
+      emit("onChange", firstItem);
     }
   }
-}
+};
 
-const cwidth = ref('auto')
+const cwidth = ref("auto");
 const calcWidth = () => {
   if (!props.shouldCalcWidth) {
-    return
+    return;
   }
   if (props.styles.width) {
-    cwidth.value = props.styles.width
-    return
+    cwidth.value = props.styles.width;
+    return;
   }
   if (selected.value && selected.value.name) {
-    cwidth.value = selected.value.name.length + 3 + 'em'
+    cwidth.value = selected.value.name.length + 3 + "em";
   } else if (props.placeHolder) {
-    cwidth.value = props.placeHolder.length + 3 + 'em'
+    cwidth.value = props.placeHolder.length + 3 + "em";
   } else {
-    cwidth.value = '100%'
+    cwidth.value = "100%";
   }
-}
+};
 onShow(() => {
-  calcWidth()
-})
+  calcWidth();
+});
 </script>
 <style lang="scss" scoped>
 .lyw-select {

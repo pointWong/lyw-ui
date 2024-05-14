@@ -7,19 +7,15 @@
     </template>
       <script setup>
       const code = `<template>
-  <div class="p-3">
-    <div>使用示例</div>
-    <lyw-input class="mt-3" v-model="word"></lyw-input>
-    <div class="mt-4">输入了：</div>
-    <div>{{ word }}</div>
+  <div class="p-2 pt-6">
+    <div class="mb-4">使用示例</div>
+    <lyw-select v-model="selected" placeHolder="请选择"></lyw-select>
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue';
 
-const word = ref('')
-
-<\/script>
-`;
+const selected = ref('选项一')
+<\/script>`;
     </script>
     

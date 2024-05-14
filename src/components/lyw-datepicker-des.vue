@@ -9,17 +9,16 @@
       const code = `<template>
   <div class="p-3">
     <div>使用示例</div>
-    <lyw-input class="mt-3" v-model="word"></lyw-input>
-    <div class="mt-4">输入了：</div>
-    <div>{{ word }}</div>
+    <div class="mt-4">
+      <lyw-datepicker v-model="date" :styles="{height:'30px'}"></lyw-datepicker>
+    </div>
+    <div class="mt-4">你选择的日期：{{ date }}</div>
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue';
 
-const word = ref('')
-
-<\/script>
-`;
+const date = ref('')
+<\/script>`;
     </script>
     

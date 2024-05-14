@@ -9,16 +9,15 @@
       const code = `<template>
   <div class="p-3">
     <div>使用示例</div>
-    <lyw-input class="mt-3" v-model="word"></lyw-input>
-    <div class="mt-4">输入了：</div>
-    <div>{{ word }}</div>
+    <lyw-countdown class="mt-3"
+      :value="countdownNum"
+      @click="countdownNum = Math.random()"
+    ></lyw-countdown>
   </div>
 </template>
 <script setup>
 import { ref } from "vue";
-
-const word = ref('')
-
+const countdownNum = ref(60);
 <\/script>
 `;
     </script>
