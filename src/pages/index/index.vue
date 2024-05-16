@@ -29,7 +29,7 @@
       </uni-collapse>
     </div>
     <div class="p-3 grow flex h-screen">
-      <div class="grow pr-2 h-full overflow-y-auto">
+      <div class="grow pr-2 h-full overflow-y-auto mr-3">
         <component :is="componented"></component>
       </div>
       <div
@@ -68,11 +68,13 @@ page {
   -webkit-user-select: text;
 }
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: red;
+  background-color: #ddd;
+  border-radius: 5px;
+
 }
 
 ::-moz-scrollbar {
