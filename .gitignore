@@ -15,6 +15,7 @@ dist
 .hbuilderx
 .vite
 unpackage/*
+.sftp-account.js
 
 # Editor directories and files
 .idea

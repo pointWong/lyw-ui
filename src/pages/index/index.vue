@@ -5,6 +5,7 @@
         <uni-collapse-item title="使用说明" :open="true">
           <div
             class="py-3 px-5 cursor-pointer flex items-center justify-between"
+            :class="{ 'bg-gray-100': currentComponent == 'decription' }"
             @click="clickItem('decription')"
           >
             <span>使用说明</span>
@@ -15,6 +16,7 @@
           <div class="cpn">
             <div
               class="cpn-item py-3 px-5 cursor-pointer flex items-center justify-between"
+              :class="{ 'bg-gray-100': currentComponent == item.id }"
               v-for="item in cpnList"
               :key="item.id"
               @click="clickItem(item.id)"
