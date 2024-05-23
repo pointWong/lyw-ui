@@ -1,7 +1,8 @@
 {
-  "name": "uni-preset-vue",
+  "name": "lyw-ui-demo",
   "version": "0.0.0",
   "scripts": {
+    "install": "pnpm install",
     "set-pages": "node ./setPages.js",
     "tailwind-dev": "tailwindcss -i ./src/tailwind-style.css -o ./src/main.css --watch",
     "tailwind-build": "tailwindcss -i ./src/tailwind-style.css -o ./src/main.css",
